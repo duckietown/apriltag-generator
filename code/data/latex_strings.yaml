@@ -1,0 +1,45 @@
+# Latex string used to build the tex file.
+
+AprilTagIDTextFront: '\n\\newcommand{\\AprilTagIDTextFront}[1]{%parameter 1:ID Number \n \\centering \n	\\Large{\\textbf{'+ IDtext +' #1}}\\\\ \n	%\\small{\\today} \n	\\vspace*{2mm}\\vspace{50mm} \n}\n'
+AprilTagIDNoTextFront: '\n\\newcommand{\\AprilTagIDNoTextFront}[0]{ \n \\centering \n	\\Large{\\textbf{ }}\\\\ \n	%\\small{\\today} \n	\\vspace*{2mm}\\vspace{50mm} \n}\n'
+
+#AprilTagIDTextFront= '\n\\newcommand{\\AprilTagIDTextFront}[1]{  \n \\centering \n	\\Large{\\textbf{ }}\\\\ \n	%\\small{\\today} \n	\\vspace*{2mm}\\vspace{50mm} \n}\n'
+
+
+AprilTagIDText: '\n\\newcommand{\\AprilTagIDText}[1]{\n	\\centering\n	\\rotatebox[origin=c]{180}{\\huge{#1}}\\\\\n	\\rotatebox[origin=c]{180}{\\small{\\today}}\n	\\vspace{60mm}\n}\n'
+
+
+# start new page (front)
+new_page: '\\clearpage\n\n\\begin{table}[p]\n	\\centering\n	\\begin{tabular}{m{15mm}m{80mm}m{80mm}m{80mm}m{15mm}}\n		%CutMarkRow\n		\\multicolumn{1}{c|}{}	& \\multicolumn{1}{c|}{\\CutMarkCell{}} & \\multicolumn{1}{c|}{} &        \\multicolumn{1}{c|}{}              &  \\\\ \\cline{1-1} \\cline{5-5}\n\n		%Distance Row\n		& \\TopBottomCell{}  & & & \\\\\n\n'
+
+# Apriltag row:
+#1
+april1: '\n%April Tag\n		& \\AprilTagCell{'
+#2
+april2: '}}  & \\AprilTagCell{'
+#3
+april3: '}}  & \\AprilTagCell{'
+#4
+april4: '}} &  \\\\\n'
+
+trafficsign: '\n%April Tag\n		& \\AprilTagCell{\\TrafficSignPicture{'
+
+# text row
+#1
+#text1 = '\n%Text Row\n		& \\BetweenCell{} \\AprilTagIDTextFront{'
+text1: '\n%Text Row\n		& \\AprilTagIDTextFront{' ## NOTE: modified
+notext1: '\n%Text Row\n		& \\AprilTagIDNoTextFront{'
+#2
+text2: '} & \\AprilTagIDTextFront{'
+notext2: '} & \\AprilTagIDNoTextFront{'
+#3
+text3: '}& \\AprilTagIDTextFront{'
+notext3: '}& \\AprilTagIDNoTextFront{'
+#4
+text4: '}& \\\\	\\cline{1-1} \\cline{5-5}\n'
+
+# Distance Row
+distance_row: '\n		%Distance Row\n		& \TopBottomCell{}  & & & \\\\\n'
+
+# end page
+end_page: '\n		%Distance Row\n		& \\TopBottomCell{}  & & & \\\\\n		%CutMarkRow\n		\\multicolumn{1}{c|}{}	& \\multicolumn{1}{c|}{\\CutMarkCell{}} & \\multicolumn{1}{m{80mm}|}{} &        \\multicolumn{1}{c|}{}              &  \n\n	\\end{tabular}\n\\end{table}\n'
