@@ -1,6 +1,7 @@
 # Latex string used to build the tex file.
 
-AprilTagIDTextFront: '\n\\newcommand{\\AprilTagIDTextFront}[1]{%parameter 1:ID Number \n \\centering \n	\\Large{\\textbf{'+ IDtext +' #1}}\\\\ \n	%\\small{\\today} \n	\\vspace*{2mm}\\vspace{50mm} \n}\n'
+AprilTagIDTextFront_pre: '\n\\newcommand{\\AprilTagIDTextFront}[1]{%parameter 1:ID Number \n \\centering \n	\\Large{\\textbf{'
+AprilTagIDTextFront_post: '#1}}\\\\ \n	%\\small{\\today} \n	\\vspace*{2mm}\\vspace{50mm} \n}\n'
 AprilTagIDNoTextFront: '\n\\newcommand{\\AprilTagIDNoTextFront}[0]{ \n \\centering \n	\\Large{\\textbf{ }}\\\\ \n	%\\small{\\today} \n	\\vspace*{2mm}\\vspace{50mm} \n}\n'
 
 #AprilTagIDTextFront= '\n\\newcommand{\\AprilTagIDTextFront}[1]{  \n \\centering \n	\\Large{\\textbf{ }}\\\\ \n	%\\small{\\today} \n	\\vspace*{2mm}\\vspace{50mm} \n}\n'
