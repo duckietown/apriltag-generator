@@ -54,4 +54,9 @@ Keep in mind that the argument `--config`, overwrites the other arguments you pa
 
 
 ### 5. generating the PDF
-In order to generate the PDF, compile the `.tex` file that has been generated in `output/`
+In order to generate the PDF, compile the `.tex` file that has been generated in `output/`. To do this, make sure you
+have `pdflatex` installed, then in the `code` folder, run:
+
+```bash
+source compile_pdfs.sh
+```
