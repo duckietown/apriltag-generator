@@ -1,0 +1,26 @@
+# We define different elements: set is a list of predefined ids (i.e. intersections)
+set:
+  config: 'set'
+  withpicture: True
+  offset: 1
+  database_name: 'apriltagsDB.yaml'
+  id_text: 'ID '
+
+
+localization:
+  config: 'localization'
+  withpicture: False
+  offset: 1
+  start: 300
+  end: 399
+  database_name: 'apriltagsDB.yaml'
+  id_text: 'LOCALIZATION TAG '
+
+autobots:
+  config: 'autobots'
+  withpicture: False
+  offset: 400
+  start: 400
+  end: 439
+  database_name: 'apriltagsDB.yaml'
+  id_text: 'Autobot '

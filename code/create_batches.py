@@ -55,8 +55,8 @@ def save_id_list(filename, id_list):
     """
     file_ = open(filename, "w")
     print(filename, id_list)
-    for id_ in id_list:
-        file_.write(str(id_) + ",")
+    row = ','.join([str(i) for i in id_list])
+    file_.write(row)
     file_.close()
 
 
