@@ -1,0 +1,24 @@
+# Here we define the required types of signs and their amount for each set type.
+intersection4way:
+  stop: 4
+  t-light-ahead: 4
+  4-way-intersect: 4
+  T-intersection: 0
+  right-T-intersect: 0
+  left-T-intersect: 0
+
+intersection3way:
+  stop: 3
+  t-light-ahead: 3
+  4-way-intersect: 0
+  T-intersection: 1
+  right-T-intersect: 1
+  left-T-intersect: 1
+
+duckiebox_signs:
+  t-light-ahead: 1
+  stop: 1
+  duck-crossing: 1
+  oneway-right: 1
+  oneway-left: 1
+  yield: 1
