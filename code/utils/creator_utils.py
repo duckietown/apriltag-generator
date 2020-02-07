@@ -4,6 +4,7 @@ import yaml
 
 def build_tags(tags=None, text_ids=None, with_text=None, t_str=None):
     assert tags is not None, "You need to provide some tags!"
+    assert tags is not None, "You need to provide some tags!"
     if with_text:
         assert text_ids is not None, "If you want to write ids, provide some text!"
 

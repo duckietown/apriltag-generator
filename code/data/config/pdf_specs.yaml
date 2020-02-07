@@ -6,21 +6,22 @@ set:
   database_name: 'apriltagsDB.yaml'
   id_text: 'ID '
 
-
 localization:
   config: 'localization'
   withpicture: False
   offset: 1
   start: 300
-  end: 399
+  end: 396
   database_name: 'apriltagsDB.yaml'
   id_text: 'LOCALIZATION TAG '
+  set_name: 0
 
 autobots:
   config: 'autobots'
   withpicture: False
   offset: 400
   start: 400
-  end: 439
+  end: 436
   database_name: 'apriltagsDB.yaml'
   id_text: 'Autobot '
+  set_name: 0

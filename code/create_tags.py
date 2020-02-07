@@ -21,7 +21,7 @@ def main():
     else:
         tagsppage = 6
 
-    offset = 1  # Autobots = 400, Localization = 1
+    offset = args.offset
 
     # Load Apriltags database
     apriltags_db = load_file(database_file)
@@ -54,8 +54,9 @@ def main():
     if args.config and args.set_name:
         set_file = os.path.join('data', 'lists', args.set_name + '.csv')
         tag_list = list(np.squeeze(pd.read_csv(set_file, header=None).values))
+        tag_list = [int(i) for i in tag_list]
     else:
-        tag_list = range(args.start, args.end+1, tagsppage)
+        tag_list = range(args.start, args.end)
 
     for idx in range(0, len(tag_list), tagsppage):
         tag_types = []
@@ -66,26 +67,27 @@ def main():
             if apriltags_db[real_index]['traffic_sign_type'] is not None:
                 traffic_sign_types.append(apriltags_db[real_index]['traffic_sign_type'])
             else:
-                traffic_sign_types[in_page_idx].append('empty')
+                traffic_sign_types.append('empty')
 
         # Write either 6 apriltags or 3 apriltags and 3 pictures on the front page
-        tag_ids = list(range(idx, idx + tagsppage))
         output.write(codecs.decode(t_str['new_page'], 'unicode_escape'))
+        tag_ids = tag_list[idx:idx+tagsppage]
+        pdf_ids = [id_ + 1 for id_ in tag_ids]
         if args.withpicture:
             output.write(codecs.decode(build_tags(tags=traffic_sign_types,
                                                   with_text=False,
                                                   t_str=t_str), 'unicode_escape'))
             output.write(codecs.decode(t_str['distance_row'], 'unicode_escape'))
-            output.write(codecs.decode(build_tags(tags=tag_ids,
+            output.write(codecs.decode(build_tags(tags=pdf_ids[:],
                                                   with_text=False,
                                                   t_str=t_str), 'unicode_escape'))
         else:
-            output.write(codecs.decode(build_tags(tags=tag_ids[0:3],
-                                                  text_ids=[_id - offset for _id in tag_ids[0:3]],
+            output.write(codecs.decode(build_tags(tags=pdf_ids[0:3],
+                                                  text_ids=[_id - offset for _id in pdf_ids[0:3]],
                                                   with_text=True, t_str=t_str), 'unicode_escape'))
             output.write(codecs.decode(t_str['distance_row'], 'unicode_escape'))
-            output.write(codecs.decode(build_tags(tags=tag_ids[3:],
-                                                  text_ids=[_id - offset for _id in tag_ids[3:]],
+            output.write(codecs.decode(build_tags(tags=pdf_ids[3:],
+                                                  text_ids=[_id - offset for _id in pdf_ids[3:]],
                                                   with_text=True, t_str=t_str), 'unicode_escape'))
 
         output.write(codecs.decode(t_str['end_page'], 'unicode_escape'))
@@ -98,7 +100,7 @@ def main():
                                                   t_str=t_str), 'unicode_escape'))
             output.write(codecs.decode(t_str['distance_row'], 'unicode_escape'))
             output.write(codecs.decode(build_tags(tags=['empty']*3,
-                                                  text_ids=[_id - offset for _id in tag_ids[0:3]],
+                                                  text_ids=[_id - offset for _id in pdf_ids[::-1]],
                                                   with_text=True, t_str=t_str), 'unicode_escape'))
         else:
             output.write(codecs.decode(build_tags(tags=['empty']*3,
