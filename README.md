@@ -1,6 +1,7 @@
 # Apriltag creator
 
 This repository provides code to generate PDFs of traffic signs/ localization tags using the Duckietown AprilTag database.
+These instructions are written for Ubuntu 18.04.
 
 ## How to use it
 
@@ -59,4 +60,18 @@ have `pdflatex` installed, then in the `code` folder, run:
 
 ```bash
 source compile_pdfs.sh
+```
+
+### Troubleshooting
+If you have errors while running Python scripts, make sure you have all requirements installed. To install them run:
+
+```bash
+pip3 install -r dependencies-py3.txt
+```
+
+If you have errors while compiling the PDFs, you will need to install `latex`, you can do it by running:
+
+```bash
+sudo apt-get update
+sudo apt-get install texlive-latex-base texlive-pictures
 ```
