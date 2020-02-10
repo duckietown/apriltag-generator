@@ -26,7 +26,7 @@ To generate sets of localization tags composed by unique IDs, run
 
 ```bash
 cd code
-python3 create_batches.py --config intersection
+python3 create_batches.py --config localization
 ```
 
 If you wish different settings, have a look at `data/config/pdf_specs.yaml`, for example you can change the
