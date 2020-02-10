@@ -43,6 +43,7 @@ def main():
     else:
         out_file = 'AprilTags_' + time + '.tex'
     out_file = os.path.join('output', out_file)
+    os.makedirs(os.path.dirname(out_file), exist_ok=True)
     copyfile(template_file, out_file)
 
     output = open(out_file, 'a')

@@ -53,6 +53,7 @@ def save_id_list(filename, id_list):
         id_list (:obj:`list`): list of ids to be saved
 
     """
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
     file_ = open(filename, "w")
     print(filename, id_list)
     row = ','.join([str(i) for i in id_list])
