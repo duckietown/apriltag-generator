@@ -3305,7 +3305,7 @@
   traffic_sign_type:
 
 - tag_id: 551
-  tag_type: StreetName
-  street_name: FURUI ST.
+  tag_type: empty
+  street_name:
   vehicle_name:
   traffic_sign_type:

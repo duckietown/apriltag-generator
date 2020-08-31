@@ -27,18 +27,24 @@ def get_useful_ids(DB_copy, set):
         # Check if we still need a certain sign
         while required_amount:
 
-            # Find match
-            i = next((i for i, tag in enumerate(DB_copy) if tag["traffic_sign_type"] == required_sign), None)
-
-            if i:
-                tag = DB_copy[i]
-                # If we have a match, save the id, reduce the required number and remove it from list
+            if required_sign == 'empty':
+                tag = DB_copy[-1]
                 useful_IDs.append(tag['tag_id'])
                 required_amount -= 1
-                DB_copy.pop(i)
+
             else:
-                # No match was found
-                return 0, DB_copy
+                # Find match
+                i = next((i for i, tag in enumerate(DB_copy) if tag["traffic_sign_type"] == required_sign), None)
+
+                if i:
+                    tag = DB_copy[i]
+                    # If we have a match, save the id, reduce the required number and remove it from list
+                    useful_IDs.append(tag['tag_id'])
+                    required_amount -= 1
+                    DB_copy.pop(i)
+                else:
+                    # No match was found
+                    return 0, DB_copy
 
     # Return the ids of the last N of the list
     int_IDs = useful_IDs[-total_tags:]
@@ -94,7 +100,14 @@ if __name__ == '__main__':
     else:
         print('Not enough tags left! Stopping.')
         exit(1)
-
+    # Then we create any special set we need
+    special_set_file = os.path.join(lists_dir, 'special_set.csv')
+    intersection_IDs, apriltagsDB_copy = get_useful_ids(apriltagsDB_copy, intersections['special_set'])
+    if intersection_IDs:
+        save_id_list(special_set_file, intersection_IDs)
+    else:
+        print('Not enough tags left!Stopping!')
+        exit(1)
     # We create as many intersections as possible, always a 4 way then a 3 way
     int_number = 0
     while True:

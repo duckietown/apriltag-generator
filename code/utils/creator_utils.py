@@ -10,23 +10,40 @@ def build_tags(tags=None, text_ids=None, with_text=None, t_str=None):
 
     t = []
     d = []
+    idx_empty = None
+
     for idx, tag in enumerate(tags):
         if type(tag) != int:
+            if text_ids is not None:
+                if text_ids[idx] == 551:
+                    # We will ignore text from here on
+                    idx_empty = idx if idx_empty is None else idx_empty
             t.append("\\Picture{" + str(tag) + ".png")
             if with_text:
                 d.append(str(text_ids[idx]))
         else:
-            t.append("\\AprilTagPicture{" + str(int(tag)))
-            if with_text:
-                d.append(str(text_ids[idx]))
+            # Special treatment for empty tag, we put a blank image
+            if tag == 551+1:
+                # For this special tag we place an empty image
+                t.append("\\Picture{" + str('empty') + ".png")
+                if with_text:
+                    d.append(str(text_ids[idx]))
+            else:
+                t.append("\\AprilTagPicture{" + str(int(tag)))
+                if with_text:
+                    d.append(str(text_ids[idx]))
 
     string = t_str['april1'] + t[0] + t_str['april2'] + t[1] + t_str['april3'] + t[2] + t_str['april4'] + t_str[
         'distance_row']
-    if with_text:
+    if with_text and idx_empty is None:
         string += t_str['text1'] + d[0] + t_str['text2'] + d[1] + t_str['text3'] + d[2] + t_str['text4']
+    elif with_text and idx_empty is not None:
+        if idx_empty == 1:
+            string += t_str['notext1'] + t_str['text2'] + d[1] + t_str['text3'] + d[2] + t_str['text4']
+        else:
+            string += t_str['notext1'] + t_str['notext2'] + t_str['text3'] + d[2] + t_str['text4']
     else:
         string += t_str['notext1'] + t_str['notext2'] + t_str['notext3'] + t_str['text4']
-
     return string
 
 

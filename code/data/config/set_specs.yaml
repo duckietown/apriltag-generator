@@ -22,3 +22,10 @@ duckiebox_signs:
   oneway-right: 1
   oneway-left: 1
   yield: 1
+
+special_set:
+  duck-crossing: 1
+  parking: 1
+  yield: 1
+  stop: 1
+  empty: 2
